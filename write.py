@@ -3,7 +3,7 @@ import pathlib
 import csv
 import json
 
-output_folder = pathlib.Path(__file__).parent.resolve() / 'output'
+output_folder = pathlib.Path(__file__).parent.resolve()
 
 
 def write_to_csv(results, filename):
