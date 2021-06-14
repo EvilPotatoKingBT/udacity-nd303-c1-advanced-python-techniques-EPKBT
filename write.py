@@ -3,7 +3,7 @@ import pathlib
 import csv
 import json
 
-output_folder = pathlib.Path(__file__).parent.resolve() / 'data'
+output_folder = pathlib.Path(__file__).parent.resolve() / 'output'
 
 
 def write_to_csv(results, filename):
@@ -11,7 +11,7 @@ def write_to_csv(results, filename):
     fieldnames = ('datetime_utc', 'distance_au', 'velocity_km_s', 'designation', 'name', 'diameter_km',
                   'potentially_hazardous')
 
-    with open(output_folder / filename, 'w', newline='') as f:
+    with open(str(output_folder) + "/" + str(filename), 'w', newline='') as f:
         write = csv.writer(f)
         write.writerow(fieldnames)
         write.writerows([(r.time_str, r.distance, r.velocity, r.neo.designation, r.neo.name, r.neo.diameter,
@@ -24,5 +24,5 @@ def write_to_json(results, filename):
     for r in results:
         dict_list.append(r.serialize())
 
-    with open(output_folder / filename, 'w') as f:
+    with open(str(output_folder) + "/" + str(filename), 'w') as f:
         json.dump(dict_list, f, indent=2)
